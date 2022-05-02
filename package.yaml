@@ -6,6 +6,7 @@ author:              "Author name here"
 maintainer:          "example@example.com"
 copyright:           "2022 Author name here"
 
+data-files: files/*.txt
 extra-source-files:
 - README.md
 - ChangeLog.md
@@ -21,6 +22,8 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- scalpel
+- containers
 
 library:
   source-dirs: src

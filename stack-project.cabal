@@ -18,6 +18,8 @@ build-type:     Simple
 extra-source-files:
     README.md
     ChangeLog.md
+data-files:
+    files/input.txt
 
 source-repository head
   type: git
@@ -25,13 +27,15 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      PageRank
   other-modules:
       Paths_stack_project
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , containers
+    , scalpel
   default-language: Haskell2010
 
 executable stack-project-exe
@@ -43,6 +47,8 @@ executable stack-project-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , containers
+    , scalpel
     , stack-project
   default-language: Haskell2010
 
@@ -56,5 +62,7 @@ test-suite stack-project-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , containers
+    , scalpel
     , stack-project
   default-language: Haskell2010
