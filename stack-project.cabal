@@ -30,8 +30,10 @@ source-repository head
 
 library
   exposed-modules:
+      Helpers
       Indexer
       PageRank
+      Search
   other-modules:
       Paths_stack_project
   hs-source-dirs:

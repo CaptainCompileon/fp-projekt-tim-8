@@ -1,11 +1,9 @@
-{-# HLINT ignore "Use tuple-section" #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
 module PageRank
   ( process',
     createEdges,
-    position,
   )
 where
 
@@ -126,9 +124,6 @@ process' :: [[Int]] -> Int -> Double -> PageRank
 process' input numIters dampingFactor =
   let (iEdges, oEdges, pageRank) = parseGraph input -- vytvorenie grafu
    in loopProcess numIters dampingFactor iEdges oEdges pageRank
-
-position :: Eq a => a -> [a] -> Int
-position i xs = fromJust (i `elemIndex` xs)
 
 -- vkladam iEdges, OEdges, pageRank ako do loopProcess, ktore sme
 -- dostali z funkcie parseGraph
