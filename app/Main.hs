@@ -34,11 +34,10 @@ main = do
   let decoded = map (\x -> decode x :: Maybe WebPageData) line
   let filtered = justifyList decoded
 
-  let urls = map (\x -> url x) filtered
-  let htmls = map (\x -> htmlContent x) filtered
-
-  let words = map (\x -> Prelude.words . innerText . dropWhile (~/= ("<body>" :: String)) . takeWhile (~/= ("</body>" :: String)) $ parseTags x) htmls
-  let anchors = map (\x -> (filter (/= "") $ (fromAttrib ("href" :: String) <$> (dropWhile (~/= ("<body>" :: String)) . takeWhile (~/= ("</body>" :: String)) $ filter isTagOpen $ parseTags x)))) htmls
+  let urls = map(\x -> url x) filtered
+  let words = map(\x -> Prelude.words . innerText . dropWhile (~/= ("<body>"::String)) . takeWhile (~/= ("</body>"::String)) $ parseTags $ htmlContent x) filtered
+  let anchors = map(\x -> (filter (/= "") $ filter (/= "#") (fromAttrib ("href"::String) <$> (dropWhile (~/= ("<body>"::String))
+                . takeWhile (~/= ("</body>"::String)) $ filter isTagOpen $ parseTags $ htmlContent x)))) filtered
 
   let indexedUrls = (zip [1 .. (length urls)] urls)
   let indexedWords = (zip [1 .. (length words)] words)
