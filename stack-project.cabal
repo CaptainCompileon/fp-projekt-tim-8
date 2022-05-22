@@ -19,8 +19,10 @@ extra-source-files:
     README.md
     ChangeLog.md
 data-files:
+    files/edgesOutput.txt
     files/indexerInput.txt
     files/indexerOutput.txt
+    files/pageRankOutput.txt
 
 source-repository head
   type: git
@@ -35,9 +37,12 @@ library
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , containers
     , scalpel
+    , tagsoup
   default-language: Haskell2010
 
 executable stack-project-exe
@@ -48,10 +53,13 @@ executable stack-project-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , containers
     , scalpel
     , stack-project
+    , tagsoup
   default-language: Haskell2010
 
 test-suite stack-project-test
@@ -63,8 +71,11 @@ test-suite stack-project-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , containers
     , scalpel
     , stack-project
+    , tagsoup
   default-language: Haskell2010

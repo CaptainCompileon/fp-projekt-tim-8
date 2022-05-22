@@ -3,7 +3,7 @@
 module Main where
 
 import Data.List
-import Indexer (computeIndexesTest, indexPages, invertedIndex)
+import Indexer (indexPages, invertedIndex)
 import PageRank (createEdges, position, process')
 import Paths_stack_project (getDataFileName)
 import Data.Aeson
@@ -26,7 +26,9 @@ justifyList xs = [ x | Just x <- xs ]
 
 main :: IO ()
 main = do
-  res <- LB.readFile "./files/collection_1.jl"
+
+  -- PARSER
+  res <- LB.readFile "./files/collection_10.jl"
   let line = LB.split (BS.c2w '\n') res
   let decoded = map(\x -> decode x :: Maybe WebPageData) line
   let filtered = justifyList decoded
@@ -37,35 +39,15 @@ main = do
   let words = map(\x -> Prelude.words . innerText . dropWhile (~/= ("<body>"::String)) . takeWhile (~/= ("</body>"::String)) $ parseTags x) htmls
   let anchors = map(\x -> (filter (/= "") $ (fromAttrib ("href"::String) <$> (dropWhile (~/= ("<body>"::String)) . takeWhile (~/= ("</body>"::String)) $ filter isTagOpen $ parseTags x)))) htmls
   
-  print urls
-  print words
-  print anchors
-  print "done"
-  --  ocakavam na vstupe data vo formate: [(pageId1,[word1,word2,...]),(pageId2,[word3,...]),...]
-  --  napr.:
-  --  [(1,["and","first","here","is","page","something","the","there","this","written"]),
-  --   (2,["a","about","and","be","here","is","it","nice","no","page","really","rocks","second","should","so","something","the","there","theres","this","written"]),
-  --   (3,["cat","dog","giraffe","labradudl","pelican"]),
-  --   (4,["apple","lemon","orange","strawberry","watermelon"])]
-  --  treba zavolat metodu indexPages
-
-  --  vystupom su data vo formate: [(word1,[pageId1,pageId2]),(word2,[pageId2]).......]
-  --  napr.:
-  --  [("and",[1,2]),("first",[1]),("here",[1,2]),.....]
-
-  -- vypocet indexov
-  -- let wordPagePairs = indexPages (zip [1,3,5] [["a", "b"],["c"],["d"]])
+  let indexedUrls = (zip [1..(length urls)] urls)
+  let indexedWords = (zip [1..(length words)] words)
+  let indexedAnchors = (zip [1..(length anchors)] anchors)
 
   -- REVERSE INDEX
   let wordPagePairs =
-        indexPages
-          [ (1, ["and", "first", "here", "is", "page", "something", "the", "there", "this", "written"]),
-            (2, ["a", "about", "and", "be", "here", "is", "it", "nice", "no", "page", "really", "rocks", "second", "should", "so", "something", "the", "there", "theres", "this", "written"]),
-            (3, ["cat", "dog", "giraffe", "labradudl", "pelican"]),
-            (4, ["apple", "lemon", "orange", "strawberry", "watermelon"])
-          ]
-      finalList = invertedIndex wordPagePairs
-  writeFile "files/indexerOutput.txt" $ show finalList
+        indexPages indexedWords
+      reverseIndexList = invertedIndex wordPagePairs
+  writeFile "files/indexerOutput.txt" $ show reverseIndexList
 
   -- PAGE RANK
   let allLinks = [["bing", "lol"], ["google", "lol"], ["google"]]

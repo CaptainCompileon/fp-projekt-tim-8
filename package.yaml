@@ -24,6 +24,9 @@ dependencies:
 - base >= 4.7 && < 5
 - scalpel
 - containers
+- aeson
+- tagsoup
+- bytestring
 
 library:
   source-dirs: src
