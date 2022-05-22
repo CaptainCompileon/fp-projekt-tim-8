@@ -1,0 +1,31 @@
+2022-05-22 09:26:11.334785000000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [])
+2022-05-22 09:26:11.379348000000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-05-22 09:26:14.353914800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [])
+2022-05-22 09:26:15.656709200000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [])
+2022-05-22 09:26:16.696265800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [])
+2022-05-22 09:26:39.819426900000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [])
+2022-05-22 09:26:39.873403600000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-05-22 09:27:25.312951800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [])
+2022-05-22 09:27:25.349093200000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-05-22 09:27:33.070610600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [])
+2022-05-22 09:27:33.105722700000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-05-22 09:30:40.225959900000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:30:40.271997200000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:30:47.987926600000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-05-22 09:32:54.190446000000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:32:54.237206300000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:33:02.080876100000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-05-22 09:45:33.677653800000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:45:33.731028800000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:45:35.606763800000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-05-22 09:48:16.897482600000 [$pid(ThreadId 4)] WARNING REQUEST - unsupported request command. {"command":"stepOut","arguments":{"threadId":0},"type":"request","seq":79}
+2022-05-22 09:48:17.836028900000 [$pid(ThreadId 4)] WARNING REQUEST - unsupported request command. {"command":"stepOut","arguments":{"threadId":0},"type":"request","seq":80}
+2022-05-22 09:48:21.388462400000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:48:21.451124200000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 09:48:23.861147800000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-05-22 11:13:59.643167600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [("Paths_stack_project","C:\\Users\\sipula\\AppData\\Local\\Temp\\ghc13788_0\\ghc_1.hscpp")])
+2022-05-22 11:13:59.668147400000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-05-22 11:29:08.461008200000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\Users\sipula\Desktop\ING_API_LS_22\FP\fp-projekt-tim-8\app\Main.hs> [("Paths_stack_project","C:\\Users\\sipula\\AppData\\Local\\Temp\\ghc24492_0\\ghc_1.hscpp")])
+2022-05-22 11:29:08.492073300000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-05-22 11:32:11.163646300000 [$pid(ThreadId 4)] WARNING REQUEST - unsupported request command. {"command":"stepOut","arguments":{"threadId":0},"type":"request","seq":210}
+2022-05-22 11:32:12.641906000000 [$pid(ThreadId 4)] WARNING REQUEST - unsupported request command. {"command":"stepOut","arguments":{"threadId":0},"type":"request","seq":211}
