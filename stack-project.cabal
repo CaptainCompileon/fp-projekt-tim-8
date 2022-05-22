@@ -19,11 +19,8 @@ extra-source-files:
     README.md
     ChangeLog.md
 data-files:
-    files/forward2.txt
-    files/forwardIndex.txt
     files/indexerInput.txt
     files/indexerOutput.txt
-    files/input.txt
 
 source-repository head
   type: git

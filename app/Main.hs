@@ -31,11 +31,11 @@ main = do
             (4, ["apple", "lemon", "orange", "strawberry", "watermelon"])
           ]
       finalList = invertedIndex wordPagePairs
-  writeFile "files/indexerOutput.txt" $ show $ finalList
+  writeFile "files/indexerOutput.txt" $ show finalList
 
   -- PAGE RANK
   let allLinks = [["bing", "lol"], ["google", "lol"], ["google"]]
   let urlList = ["google", "bing", "lol"]
 
-  writeFile "output2.txt" $ show $ createEdges (map (map (`position` urlList)) allLinks)
-  writeFile "output.txt" $ show $ process' (map (map (`position` urlList)) allLinks) 3 0.85
+  writeFile "files/edgesOutput.txt" $ show $ createEdges (map (map (`position` urlList)) allLinks)
+  writeFile "files/pageRankOutput.txt" $ show $ process' (map (map (`position` urlList)) allLinks) 3 0.85
