@@ -1,12 +1,46 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
 import Data.List
 import Indexer (computeIndexesTest, indexPages, invertedIndex)
 import PageRank (createEdges, position, process')
 import Paths_stack_project (getDataFileName)
+import Data.Aeson
+import Text.HTML.TagSoup
+import GHC.Base
+import qualified Data.ByteString.Lazy as LB
+import qualified Data.ByteString.Internal as BS (c2w)
+
+data WebPageData = WebPageData { url :: String, htmlContent :: String } deriving Show
+
+instance FromJSON WebPageData where
+  parseJSON (Object v) = do
+      url <- v .: "url"
+      htmlContent <- v .: "html_content"
+      return (WebPageData { url = url, htmlContent = htmlContent })
+  parseJSON _ = empty
+
+justifyList :: [Maybe WebPageData] -> [WebPageData]
+justifyList xs = [ x | Just x <- xs ]
 
 main :: IO ()
 main = do
+  res <- LB.readFile "./files/collection_1.jl"
+  let line = LB.split (BS.c2w '\n') res
+  let decoded = map(\x -> decode x :: Maybe WebPageData) line
+  let filtered = justifyList decoded
+
+  let urls = map(\x -> url x) filtered
+  let htmls = map(\x -> htmlContent x) filtered
+
+  let words = map(\x -> Prelude.words . innerText . dropWhile (~/= ("<body>"::String)) . takeWhile (~/= ("</body>"::String)) $ parseTags x) htmls
+  let anchors = map(\x -> (filter (/= "") $ (fromAttrib ("href"::String) <$> (dropWhile (~/= ("<body>"::String)) . takeWhile (~/= ("</body>"::String)) $ filter isTagOpen $ parseTags x)))) htmls
+  
+  print urls
+  print words
+  print anchors
+  print "done"
   --  ocakavam na vstupe data vo formate: [(pageId1,[word1,word2,...]),(pageId2,[word3,...]),...]
   --  napr.:
   --  [(1,["and","first","here","is","page","something","the","there","this","written"]),
