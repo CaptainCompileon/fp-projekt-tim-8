@@ -56,11 +56,10 @@ main = do
 
   writeFile "files/urlsOutput.txt" $ show $ zip [0 ..] urlList
   writeFile "files/edgesOutput.txt" $ show $ createEdges (map (map (`position` urlList)) anchors)
-  -- writeFile "files/pageRankOutput.txt" $ show $
-  let nieco = map (map (`position` urlList)) anchors
-  print nieco
+
+  let linkIndexesForUrls = (map (map (`position` urlList)) anchors)
   print "start pageRanking"
-  print $ show $ process' nieco 1 0.85
+  writeFile "files/pageRankOutput.txt" $ show $ process' linkIndexesForUrls 1 0.85
 
   -- SEARCH
   -- handle <- openFile "files/indexerOutput.txt" ReadMode
