@@ -7,9 +7,11 @@ import qualified Data.ByteString.Internal as BS (c2w)
 import qualified Data.ByteString.Lazy as LB
 import Data.List
 import GHC.Base
+import Helpers (position)
 import Indexer (indexPages, invertedIndex)
-import PageRank (createEdges, position, process')
+import PageRank (createEdges, process')
 import Paths_stack_project (getDataFileName)
+import Search (searchExpressions)
 import Text.HTML.TagSoup
 
 data WebPageData = WebPageData {url :: String, htmlContent :: String} deriving (Show)
@@ -49,11 +51,16 @@ main = do
   writeFile "files/indexerOutput.txt" $ show reverseIndexList
 
   -- PAGE RANK
-  let allLinks = [["bing", "lol"], ["google", "lol"], ["google"]]
-  let urlList = ["google", "bing", "lol"]
+  let urlList = urls ++ (concat anchors)
+  -- print urlList
 
-  writeFile "files/edgesOutput.txt" $ show $ createEdges (map (map (`position` urlList)) allLinks)
-  writeFile "files/pageRankOutput.txt" $ show $ process' (map (map (`position` urlList)) allLinks) 3 0.85
+  writeFile "files/urlsOutput.txt" $ show $ zip [0 ..] urlList
+  writeFile "files/edgesOutput.txt" $ show $ createEdges (map (map (`position` urlList)) anchors)
+  -- writeFile "files/pageRankOutput.txt" $ show $
+  let nieco = map (map (`position` urlList)) anchors
+  print nieco
+  print "start pageRanking"
+  print $ show $ process' nieco 1 0.85
 
   -- SEARCH
   -- handle <- openFile "files/indexerOutput.txt" ReadMode
@@ -63,4 +70,4 @@ main = do
 
   putStrLn "Type expression to search:"
   searchExpression <- getLine
-  print (searchExpressions finalList searchExpression)
+  print (searchExpressions reverseIndexList searchExpression)

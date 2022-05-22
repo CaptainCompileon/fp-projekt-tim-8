@@ -23,6 +23,7 @@ data-files:
     files/indexerInput.txt
     files/indexerOutput.txt
     files/pageRankOutput.txt
+    files/urlsOutput.txt
 
 source-repository head
   type: git
