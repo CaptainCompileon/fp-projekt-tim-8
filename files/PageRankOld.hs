@@ -2,14 +2,14 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
-module PageRank
-  ( process',
-    createEdges,
-    position,
+module PageRankOld
+  ( process,
   )
 where
 
+import qualified Control.Monad
 import Data.Functor ((<&>))
+import qualified Data.Functor
 import Data.List (elemIndex)
 import Data.Map
   ( Map,
@@ -40,6 +40,19 @@ type Edge = (PageId, PageId)
 type InLinks = Map PageId [PageId]
 
 type OutLinks = InLinks
+
+parseLine :: (InLinks, OutLinks, PageId) -> String -> (InLinks, OutLinks, PageId)
+parseLine (iEdges, oEdges, maxNode) line =
+  let ws = words line
+      (from, to) = (read $ head ws, read $ ws !! 1)
+   in ( insertWith plusNode to [from] iEdges,
+        insertWith plusNode from [to] oEdges,
+        max to (max maxNode from)
+      )
+  where
+    plusNode :: [PageId] -> [PageId] -> [PageId]
+    plusNode new_node old_node =
+      new_node ++ old_node
 
 parseEdges :: (InLinks, OutLinks, PageId) -> (Int, Int) -> (InLinks, OutLinks, PageId)
 parseEdges (iEdges, oEdges, maxNode) line =
@@ -89,17 +102,23 @@ postProcess (iEdges, oEdges, maxNode) =
     addAllNodes n iEdges
       | n < 0 = iEdges
       | otherwise =
-        addAllNodes (n - 1) $ insertWith (++) n [] iEdges
+        addAllNodes (n - 1) $ insertWith (\new old -> new ++ old) n [] iEdges
 
-parseGraph :: [[Int]] -> (InLinks, OutLinks, PageRank)
+parseGraph :: String -> (InLinks, OutLinks, PageRank)
 parseGraph input =
-  let ls = createEdges input
-      (iEdges, oEdges) = postProcess $ foldl parseEdges (empty, empty, 0) ls
+  let ls = lines input
+      (iEdges, oEdges) = postProcess $ foldl parseLine (empty, empty, 0) ls
       numNodes = size iEdges
    in (iEdges, oEdges, newPageRank numNodes)
 
-createEdges :: [[Int]] -> [Edge]
-createEdges outLinks = join (zipWith (\as i -> as <&> (,) i) outLinks [0 ..])
+createEdges :: [Edge]
+createEdges =
+  let outLinks = [[2, 3], [5, 6], [0, 1]] :: [[Int]]
+   in -- headd line = read (head $ words line) :: Int
+      -- taill line = f $ tail line
+      edgeList outLinks
+
+edgeList outLinks = join (zipWith (\as i -> as <&> (,) i) outLinks [0 ..])
 
 loopProcess :: Int -> Double -> InLinks -> OutLinks -> PageRank -> PageRank
 loopProcess 0 _ _ _ pageRank = pageRank
@@ -113,8 +132,8 @@ loopProcess n dampingFactor iEdges oEdges pageRank =
       | otherwise =
         let inbounds = fromJust $ lookup n iEdges
             newPrValue =
-              (1 - dampingFactor) / fromIntegral (size iEdges)
-                + dampingFactor * foldl calc 0 inbounds
+              ((1 - dampingFactor) / fromIntegral (size iEdges))
+                + (dampingFactor * foldl calc 0 inbounds)
          in loop' (n - 1) $ insert n newPrValue pr
       where
         calc acc node =
@@ -122,13 +141,10 @@ loopProcess n dampingFactor iEdges oEdges pageRank =
               prValue = fromJust $ lookup node pageRank
            in acc + prValue / fromIntegral (length outbounds)
 
-process' :: [[Int]] -> Int -> Double -> PageRank
-process' input numIters dampingFactor =
-  let (iEdges, oEdges, pageRank) = parseGraph input -- vytvorenie grafu
+process :: String -> Int -> Double -> PageRank
+process input numIters dampingFactor =
+  let (iEdges, oEdges, pageRank) = parseGraph input
    in loopProcess numIters dampingFactor iEdges oEdges pageRank
-
-position :: Eq a => a -> [a] -> Int
-position i xs = fromJust (i `elemIndex` xs)
 
 -- vkladam iEdges, OEdges, pageRank ako do loopProcess, ktore sme
 -- dostali z funkcie parseGraph
