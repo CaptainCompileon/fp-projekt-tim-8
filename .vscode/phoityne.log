@@ -1,0 +1,12 @@
+2022-05-22 20:53:56.096964800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <c:\haskell_projects\stack-project\src\PageRank2.hs> [("Helpers","C:\\haskell_projects\\stack-project\\src\\Helpers.hs"),("Indexer","C:\\haskell_projects\\stack-project\\src\\Indexer.hs"),("Main","C:/haskell_projects/stack-project/app/Main.hs"),("PageRank","C:\\haskell_projects\\stack-project\\src\\PageRank.hs"),("Paths_stack_project","C:\\Users\\omgad\\AppData\\Local\\Temp\\ghc40836_0\\ghc_1.hscpp"),("Search","C:\\haskell_projects\\stack-project\\src\\Search.hs")])
+2022-05-22 20:55:35.021572100000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-05-22 20:56:24.577006200000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 20:56:24.623881900000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 20:56:30.246178100000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-05-22 20:56:57.024543900000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 20:56:57.090863400000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 20:56:59.741940400000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-05-22 20:59:12.324302700000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 20:59:12.403247300000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-05-22 20:59:14.475591600000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-05-22 21:00:00.813348300000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
